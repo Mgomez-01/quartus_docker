@@ -72,6 +72,8 @@ RUN curl -sOL https://github.com/dalance/svls/releases/download/v0.2.5/svls-v0.2
 RUN chmod -R 755 /opt/intelFPGA_lite/ && \
     useradd -u ${UID} -m -s /bin/bash quartus
 
+ADD vlsi_project /vlsi
+
 ENV PATH=/opt/intelFPGA_lite/20.1/modelsim_ase/bin/:$PATH
 ENV LC_ALL="en_US.UTF-8"
 RUN echo "env LD_LIBRARY_PATH=/opt/intelFPGA_lite/20.1/quartus/linux64/ LD_PRELOAD=/usr/lib/libtcmalloc_minimal.so.4 quartus" > /usr/bin/verilog && chmod +x /usr/bin/verilog
@@ -79,3 +81,5 @@ USER quartus
 WORKDIR /home/quartus
 VOLUME /home/quartus
 CMD verilog
+
+ADD vlsi_project /home/speedy/vlsi
